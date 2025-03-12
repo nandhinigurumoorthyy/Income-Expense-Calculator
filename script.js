@@ -1,4 +1,4 @@
-const API_url = "https://66ec09692b6cf2b89c5cf3c8.mockapi.io/incomeExpenses";
+const API_url = "https://66ec09692b6cf2b89c5cf3c8.mockapi.io/users";
 
 async function fetchAndDisplay(filterText = { type: "" }) {
   try {
@@ -45,7 +45,7 @@ async function fetchAndDisplay(filterText = { type: "" }) {
 
         const editButton = document.createElement("button");
         editButton.className =
-          "border-2 bg-green-600 text-white hover:outline rounded-md py-2 px-4 hover:bg-green-700 hover:text-xl";
+          "border-2 bg-green-700 text-white hover:outline rounded-md py-2 px-4 hover:bg-green-950";
         editButton.innerText = "Edit";
         editButton.onclick = () =>
           editItem(item.id, tabdescription, tabamt, item.type);
@@ -53,7 +53,7 @@ async function fetchAndDisplay(filterText = { type: "" }) {
 
         const deleteButton = document.createElement("button");
         deleteButton.className =
-          "border-2 bg-red-600 text-white hover:outline rounded-md py-2 px-4 hover:bg-red-700 hover:text-xl";
+          "border-2 bg-red-600 text-white hover:outline rounded-md py-2 px-4 hover:bg-red-700 ";
         deleteButton.innerText = "Delete";
         deleteButton.onclick = () => deleteItem(item.id);
         tabaction.appendChild(deleteButton);
@@ -69,9 +69,8 @@ async function fetchAndDisplay(filterText = { type: "" }) {
     // Update totals
     document.getElementById("incomeNum").innerText = `$${totalIncome}`;
     document.getElementById("expenseNum").innerText = `$${totalExpenses}`;
-    document.getElementById("balNum").innerText = `$${
-      totalIncome - totalExpenses
-    }`;
+    document.getElementById("balNum").innerText = `$${totalIncome - totalExpenses
+      }`;
   } catch (error) {
     console.error("Error fetching data", error);
   }
@@ -112,8 +111,9 @@ function editItem(id, tabdescription, tabamt, originalType) {
 }
 
 window.onload = () => {
+  // nav
   const nav = document.createElement("div");
-  nav.className = "flex flex-row justify-center gap-2 py-4 shadow-lg font-mono";
+  nav.className = "flex flex-row justify-center gap-2 py-4 shadow-lg";
   document.body.appendChild(nav);
 
   // Income Expense Calculator
@@ -128,14 +128,22 @@ window.onload = () => {
   headingImg.className = "w-10";
   nav.appendChild(headingImg);
 
+  // Main Content
   const check = document.createElement("div");
-  check.className = "flex flex-col gap-3 mx-24 mt-5 font-mono";
+  check.className = "flex flex-col gap-3 mx-24 mt-5 ";
   document.body.appendChild(check);
+
+  // Quote
+  const quoteElement = document.createElement("div");
+  quoteElement.textContent =
+    "Track your income, control your expenses, and master your finances....";
+  quoteElement.className = "text-center text-xl font-meidum";
+  check.appendChild(quoteElement);
 
   // Income
   const incomeDisplay = document.createElement("div");
   incomeDisplay.className =
-    "bg-teal-700 text-white font-semibold text-2xl flex justify-around p-3 font-mono";
+    "bg-teal-700 text-white font-semibold text-2xl flex justify-around p-3";
   check.appendChild(incomeDisplay);
 
   const incomeName = document.createElement("h3");
@@ -150,7 +158,7 @@ window.onload = () => {
   // Expenses
   const expenseDisplay = document.createElement("div");
   expenseDisplay.className =
-    "bg-teal-700 text-white font-semibold text-2xl flex justify-around p-3 font-mono";
+    "bg-teal-700 text-white font-semibold text-2xl flex justify-around p-3";
   check.appendChild(expenseDisplay);
 
   const expenseName = document.createElement("h3");
@@ -165,7 +173,7 @@ window.onload = () => {
   // Net Balance
   const balDisplay = document.createElement("div");
   balDisplay.className =
-    "bg-teal-700 text-white font-semibold text-2xl flex justify-around p-3 font-mono";
+    "bg-teal-700 text-white font-semibold text-2xl flex justify-around p-3";
   check.appendChild(balDisplay);
 
   const balName = document.createElement("h3");
@@ -179,7 +187,7 @@ window.onload = () => {
 
   // Add New Entry
   const newEntry = document.createElement("div");
-  newEntry.className = "mx-24 mt-8 font-mono shadow-xl";
+  newEntry.className = "mx-24 mt-8  mb-6";
   document.body.appendChild(newEntry);
 
   const addNewEntry = document.createElement("h6");
@@ -300,7 +308,7 @@ window.onload = () => {
 
   // Filter Section
   const filterDiv = document.createElement("div");
-  filterDiv.className = "flex flex-row mx-24 font-mono mt-8";
+  filterDiv.className = "flex flex-row mx-24 mt-8";
   document.body.appendChild(filterDiv);
 
   // Filter - All
@@ -348,11 +356,11 @@ window.onload = () => {
   // Entries Section
   const entries = document.createElement("p");
   entries.innerText = "Entries";
-  entries.className = "text-center font-bold text-2xl font-mono mt-6"; // Center the heading
+  entries.className = "text-center font-bold text-2xl mt-6"; // Center the heading
   document.body.appendChild(entries);
 
   const tableWrapper = document.createElement("div"); // Create a div to wrap the table
-  tableWrapper.className = "flex justify-center"; // Center the table wrapper
+  tableWrapper.className = "flex justify-center mx-24"; // Center the table wrapper
   document.body.appendChild(tableWrapper);
 
   const table = document.createElement("table");
